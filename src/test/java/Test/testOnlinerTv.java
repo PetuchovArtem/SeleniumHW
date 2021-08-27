@@ -2,6 +2,7 @@ package Test;
 
 import Pages.MainPage;
 import Pages.TVPage;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -29,10 +30,14 @@ public class testOnlinerTv {
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0, 350)");
 
-        TVPage TVPage = new TVPage();
-        TVPage.clickSamsungSwitch();
+        TVPage tvPage = new TVPage();
+        tvPage.clickSamsungSwitch();
+        tvPage.clickSonySwitch();
 
-        Assertions.assertTrue(TVPage.checkSamsungSwitch());
+        tvPage.getItemName().contains("Sony");
+
+        Assertions.assertTrue(tvPage.getItemName().contains("Sony"));
+
         driver.quit();
     }
 }
